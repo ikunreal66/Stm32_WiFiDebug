@@ -1,0 +1,12 @@
+Objects/
+Listings/
+*.o
+*.d
+*.crf
+*.dep
+*.axf
+*.lnp
+*.lst
+*.map
+*.htm
+*.build_log.htm
