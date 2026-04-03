@@ -1,5 +1,5 @@
 #include "Serial.h"
-#include <string.h>
+
 
 
 // ==================== 电脑串口 (USART1) ====================

@@ -1,19 +1,29 @@
-#ifndef _WIFI_H_
-#define _WIFI_H_
+#ifndef  __WIFI_H__//如果没有定义了则参加以下编译
+#define  __WIFI_H__//一旦定义就有了定义 所以 其目的就是防止模块重复编译
+
 #include "stm32f10x.h"
 #include "delay.h"
-#include "stdio.h"
+#include "stdlib.h"
 #include "string.h"
-#include "Serial.h"
-typedef struct{
-	uint8_t recvbuf[1024];
-	uint16_t recvcnt;
-}WIFIDATA;
+#include "serial.h"
+
+typedef  struct{
+    uint8_t rxbuff[1024];
+    uint16_t rxcount;
+    uint8_t rxover;
+    
+    uint8_t txbuff[1024];
+    uint16_t txcount;
+}WIFI;
+
+extern WIFI wifi;
 
 void Esp8266_Config(void);
-void U3_SendStr(uint8_t * data);
-uint8_t Wifi_Send_Cmd(char * cmd,char * recv,uint32_t timeout);
-uint8_t Wifi_ConnectIP(void);
-void U3_SendStr(uint8_t * data);
-#endif
-		
+void Usart3_SendByte(uint8_t Byte);
+void Usart3_SendString(uint8_t *string);
+void Esp8266_SendString(uint8_t *string,uint16_t len);//串口3 发送字符串
+uint8_t EspSendCmdAndCheckRecvData(uint8_t *cmd,uint8_t *Rcmd,uint16_t outtime);
+uint8_t WIFI_ConnectPC(void);
+
+
+#endif  //结束编译

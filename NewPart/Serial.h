@@ -3,7 +3,8 @@
 
 #include "stm32f10x.h"
 #include <stdio.h>
-
+#include <string.h>
+#include <stdarg.h>
 
 /* 保持不变：电脑串口 (USART1) */
 void Serial_Init(uint32_t baudrate);

@@ -1,22 +1,38 @@
-#include "stm32f10x.h"
-#include "serial.h"
-#include "stdio.h"
-#include "delay.h"
-#include "string.h"
-#include "wifi.h"
-uint8_t Send_wifidata[102];
 
-int main()
+#include "stm32f10x.h"                  // Device header
+#include "Delay.h"
+#include "OLED.h"
+#include "serial.h"
+#include "WiFi.h"
+
+int main(void)
 {
-	NVIC_SetPriorityGrouping(5);//两位抢占两位次级
-    Serial_Init(115200); 
-	Esp8266_Config();
-    strcpy((char*)Send_wifidata, "hello world");
-	Wifi_ConnectIP();
-    U3_SendStr(Send_wifidata);
-    while(1)
-    {	
-    }
-		return 0;
+  NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+  OLED_Init();
+  OLED_ShowString(1,1,"Hello World!");
+  Serial_Init(115200);
+  Esp8266_Config();
+    
+  uint16_t ret = WIFI_ConnectPC();
+
+  
+//   uint16_t ret = WIFI_Connect(  "ikun", 
+//                                 "12345678", 
+//                                 "192.168.137.1", 
+//                                 "8080"
+//   );
+
+//   uint16_t ret = WIFI_ConnectPC(  "ikunreal", 
+//                                 "12345678", 
+//                                 "10.37.80.166", 
+//                                 "50247"
+//   );
+
+
+  OLED_ShowNum(2,1,ret,1);
+  while(1)
+  {
+    
+  }
 }
 
