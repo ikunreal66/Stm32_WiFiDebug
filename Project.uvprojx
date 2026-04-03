@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>.\Start;.\User;.\Library;.\System;.\Hardware;.\NewPart</IncludePath>
+              <IncludePath>.\Start;.\Library;.\System;.\Hardware;.\NewPart;.\User</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -708,6 +708,16 @@
               <FileName>Laser_Iset.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\NewPart\Laser_Iset.h</FilePath>
+            </File>
+            <File>
+              <FileName>WiFi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\NewPart\WiFi.h</FilePath>
+            </File>
+            <File>
+              <FileName>WiFi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\NewPart\WiFi.c</FilePath>
             </File>
           </Files>
         </Group>
