@@ -76,7 +76,7 @@ void USART1_IRQHandler(void) {
 
     if (USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) {
         uint8_t Data = USART_ReceiveData(USART1);
-        ToWIFI_SendByte(Data); // 电脑发来什么，立刻塞给WiFi
+        USART3->DR = Data; // 电脑发来什么，立刻塞给WiFi
         USART_ClearITPendingBit(USART1, USART_IT_RXNE);
     }
 }
