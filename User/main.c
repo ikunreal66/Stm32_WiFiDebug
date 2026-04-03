@@ -13,14 +13,14 @@ int main(void)
   Serial_Init(115200);
   Esp8266_Config();
     
-  uint16_t ret = WIFI_ConnectPC();
+//  uint16_t ret = WIFI_Connect();
 
   
-//   uint16_t ret = WIFI_Connect(  "ikun", 
-//                                 "12345678", 
-//                                 "192.168.137.1", 
-//                                 "8080"
-//   );
+   uint16_t ret = WIFI_Connect( (uint8_t*) "ikun", 
+                                (uint8_t*) "12345678", 
+                                (uint8_t*) "192.168.137.1", 
+                                (uint8_t*) "8080"
+   );
 
 //   uint16_t ret = WIFI_ConnectPC(  "ikunreal", 
 //                                 "12345678", 

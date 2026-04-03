@@ -1,0 +1,14 @@
+[33mb7fb19d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: checkout: moving from temp-branch to master
+[33m6ab8f95[m[33m ([m[1;32mtemp-branch[m[33m)[m HEAD@{1}: checkout: moving from 6ab8f951fbf03e5f368199801f7127b8a0fef6f5 to temp-branch
+[33m6ab8f95[m[33m ([m[1;32mtemp-branch[m[33m)[m HEAD@{2}: commit: final auto connect wifi
+[33maf2dc8a[m HEAD@{3}: rebase (start): checkout HEAD~2
+[33mb7fb19d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{4}: reset: moving to HEAD
+[33mb7fb19d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{5}: commit: Auto connect successfully needed to pack
+[33m01f4f21[m HEAD@{6}: reset: moving to 01f4f21
+[33m2131209[m HEAD@{7}: reset: moving to origin/master
+[33mfbb025e[m HEAD@{8}: reset: moving to HEAD~2~
+[33m01f4f21[m HEAD@{9}: checkout: moving from master to master
+[33m01f4f21[m HEAD@{10}: commit: from csdn try atuo
+[33maf2dc8a[m HEAD@{11}: commit: Auto Send AT ALL GOOD BUT UI BUG
+[33m2131209[m HEAD@{12}: commit: modify the package send AT orders one by one wifi connection OK!
+[33mfbb025e[m HEAD@{13}: commit (initial): Initial commit: STM32 WiFi Bridge project ready and stable

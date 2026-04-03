@@ -146,37 +146,38 @@ uint8_t EspSendCmdAndCheckRecvData(uint8_t *cmd,uint8_t *Rcmd,uint16_t outtime)
 
 
 /**
-  * @brief  连接电脑 TCP Server (调试版)
-  * @retval 1: 成功
-  * 10: AT握手失败
-  * 20: 设置模式失败
-  * 30: 连接热点失败 (SSID/密码错或信号差)
-  * 40: 连接服务器失败 (IP/端口错或防火墙)
-  * 50: 开启透传失败
-  * 60: 进入透传发送失败
+  * @brief  连接指定热点和服务器 (形参使用 uint8_t)
+  * @param  ssid: Wi-Fi 名称
+  * @param  pwd:  Wi-Fi 密码
+  * @param  ip:   电脑服务器 IP
+  * @param  port: 端口号 (注意：这里传入字符串形式的端口)
+  * @retval 6: 成功, 其他: 对应的错误码
   */
-uint8_t WIFI_ConnectPC(void)
+uint8_t WIFI_Connect(uint8_t *ssid, uint8_t *pwd, uint8_t *ip, uint8_t *port)
 {
-	// 1. 基础握手
-    if(EspSendCmdAndCheckRecvData("AT\r\n", "OK", 1000) != 1) return 0;
+    char cmd[128]; // 内部临时缓冲区，用于拼接指令
 
-    // 2. 设置模式
-    if(EspSendCmdAndCheckRecvData("AT+CWMODE=1\r\n", "OK", 1000) != 1) return 1;
-    
-    // 3. 连接热点
-    if(EspSendCmdAndCheckRecvData("AT+CWJAP=\"ikunreal\",\"12345678\"\r\n", "OK", 15000) != 1) return 2;
+    // 1. 基础握手
+    if(!EspSendCmdAndCheckRecvData((uint8_t *)"AT\r\n", (uint8_t *)"OK", 1000)) return 10;
 
-    // 4. 连接服务器
-    if(EspSendCmdAndCheckRecvData("AT+CIPSTART=\"TCP\",\"10.37.80.166\",8080\r\n", "OK", 5000) != 1) return 3;
+    // 2. 设置模式为 Station
+    if(!EspSendCmdAndCheckRecvData((uint8_t *)"AT+CWMODE=1\r\n", (uint8_t *)"OK", 1000)) return 20;
 
-    // 5. 开启透传
-    if(EspSendCmdAndCheckRecvData("AT+CIPMODE=1\r\n", "OK", 1000) != 1) return 4;
+    // 3. 拼接并连接热点: AT+CWJAP="ssid","pwd"
+    sprintf(cmd, "AT+CWJAP=\"%s\",\"%s\"\r\n", (char *)ssid, (char *)pwd);
+    if(!EspSendCmdAndCheckRecvData((uint8_t *)cmd, (uint8_t *)"OK", 15000)) return 30;
+
+    // 4. 拼接并连接服务器: AT+CIPSTART="TCP","ip",port
+    sprintf(cmd, "AT+CIPSTART=\"TCP\",\"%s\",%s\r\n", (char *)ip, (char *)port);
+    if(!EspSendCmdAndCheckRecvData((uint8_t *)cmd, (uint8_t *)"OK", 5000)) return 40;
+
+    // 5. 开启透传模式
+    if(!EspSendCmdAndCheckRecvData((uint8_t *)"AT+CIPMODE=1\r\n", (uint8_t *)"OK", 1000)) return 50;
 
     // 6. 进入透传状态
-    if(EspSendCmdAndCheckRecvData("AT+CIPSEND\r\n", ">", 1000) != 1) return 5;
+    if(!EspSendCmdAndCheckRecvData((uint8_t *)"AT+CIPSEND\r\n", (uint8_t *)">", 1000)) return 60;
 
-    // 成功
-    USART3_SendString("STM32 Link Start!\r\n");
+    // 成功提示
+    USART3_SendString((uint8_t *)"STM32 Link Start!\r\n");
     return 6;
 }
-

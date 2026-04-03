@@ -23,7 +23,7 @@ void Usart3_SendByte(uint8_t Byte);
 void Usart3_SendString(uint8_t *string);
 void Esp8266_SendString(uint8_t *string,uint16_t len);//串口3 发送字符串
 uint8_t EspSendCmdAndCheckRecvData(uint8_t *cmd,uint8_t *Rcmd,uint16_t outtime);
-uint8_t WIFI_ConnectPC(void);
+uint8_t WIFI_Connect(uint8_t *ssid, uint8_t *pwd, uint8_t *ip, uint8_t *port);
 
 
 #endif  //结束编译
