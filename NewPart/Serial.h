@@ -4,6 +4,7 @@
 #include "stm32f10x.h"
 #include <stdio.h>
 
+
 /* 保持不变：电脑串口 (USART1) */
 void Serial_Init(uint32_t baudrate);
 void Serial_SendByte(uint8_t Byte);

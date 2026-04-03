@@ -1,5 +1,6 @@
 Objects/
 Listings/
+/
 *.o
 *.d
 *.crf
@@ -10,3 +11,5 @@ Listings/
 *.map
 *.htm
 *.build_log.htm
+*.uvguix
+*.uvprojx
